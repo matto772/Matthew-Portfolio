@@ -1,0 +1,1 @@
+Program was compiled using g++ -Wall program2.cpp, outputs all 40320 combinations of countries, lists off all the new lows, and finally gives the lowest. Thank you.
