@@ -1,0 +1,239 @@
+<!--Names - Matthew Ogurkis, Jake Douthit-->
+<!--SmartCoop part 1-->
+<!--Date Started: 2/28/2024-->
+<!--Date Completed: 3/1/2024-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCoop</title>
+    <!--Bootstrap link here-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">     
+</head>
+<body class="bg-dark">
+    <div class="d-flex col-12 justify-content-center align-items-center vh-100">    
+        <!--Login part here--> 
+        <div class="card col-12 col-md-5 col-lg-4" id="divLogin">
+            <div class="card-header">
+                <h3>Login</h3>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group mt-4">
+                        <label for="txtLoginEmail" class="form-label">Email</label>
+                        <input id="txtLoginEmail" placeholder="YourEmail@example.com" aria-label="Email" class="form-control" type="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtLoginPassword" class="form-label">Password</label>
+                        <input id="txtLoginPassword" placeholder="Password" aria-label="Password" class="form-control" type="password">
+                    </div>
+                    <button class="col-12 btn btn-success mt-4" id="btnLogin" type="button">Login</button>
+                    <div class="col-12 d-flex justify-content-center">
+                        <a class="col-12 text-center btnToggle" data-card="Login">Need an Account?  Click Here</a>
+                    </div>                
+                </form>
+            </div>
+        </div>
+        <div class="card col-12 col-md-5 col-lg-4" id="divRegister" style="display:none;">
+            <div class="card-header">
+                <h3>Registration</h3>
+            </div>
+            <!--Registration part here-->  
+            <div class="card-body">
+            <form>
+                <div class="form-group mt-4">
+                    <label for="txtEmail" class="form-label">Email</label>
+                    <input id="txtEmail" placeholder="YourEmail@example.com" aria-label="Email" class="form-control" type="email"> 
+                </div>
+                <div class="form-group">
+                    <label for="txtPassword" class="form-label">Password</label>
+                    <input id="txtPassword" placeholder="Password" aria-label="Password" class="form-control" type="password">
+                </div>
+                <div class="form-group">
+                    <label for="txtFirstName" class="form-label">First Name</label>
+                    <input id="txtFirstName" placeholder="First Name" aria-label="First Name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtLastName" class="form-label">Last Name</label>
+                    <input id="txtLastName" placeholder="Last Name" aria-label="Last Name" class="form-control">
+                </div> 
+                <div class="form-group">
+                    <label for="txtStreetAddrOne" class="form-label">Street Address 1</label>
+                    <input id="txtStreetAddrOne" placeholder="Street Address 1" aria-label="Street Address 1" class="form-control">
+                </div> 
+                <div class="form-group">
+                    <label for="txtStreetAddrTwo" class="form-label">Street Address 2</label>
+                    <input id="txtStreetAddrTwo" placeholder="Street Address 2" aria-label="Street Address 2" class="form-control">
+                </div> 
+                <div class="form-group">
+                    <label for="txtCity" class="form-label">City</label>
+                    <input id="txtCity" placeholder="City" aria-label="City" class="form-control">
+                </div>  
+                <div class="form-group">
+                    <label for="txtState" class="form-label">State</label>
+                    <input id="txtState" placeholder="State" aria-label="State" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtZip" class="form-label">ZIP</label>
+                    <input id="txtZip" placeholder="Zip" aria-label="Zip" class="form-control">
+                </div>      
+                <div class="form-group mt-4">
+                    <label for="txtPhone" class="form-label">Phone</label>
+                    <input id="txtPhone" placeholder="xxx-xxx-xxxx" aria-label="Phone number" class="form-control" type="email"> 
+                </div>
+                <div class="form-group mt-4">
+                    <label for="txtCoopID" class="form-label">Coop Registration ID</label>
+                    <input id="txtCoopID" placeholder="Coop ID" aria-label="Coop ID" class="form-control">
+                </div> 
+            </form>
+            <button class="col-12 btn btn-success mt-4" id="btnRegister" type="button">Register</button>
+                <div class="col-12 d-flex justify-content-center">
+                    <a class="col-12 text-center btnToggle" data-card="Register">Return To Login</a>
+                </div> 
+            <div class="card col-12 col-md-10 col-lg-9" id="divDashboard" style="display:none;">
+                <div class="card-header">
+                    <h3>Dashboard</h3>
+                </div>
+                <div class="card-body">
+                    This is a dashboard
+                    <button class="btn btn-danger col-12" type="button" id="btnLogout">Logout</button>
+                    </div>
+                </div>
+            </div> 
+            <!--Blank Dashboard part here-->    
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+            <!--Script/functions start here--> 
+            <script>
+            //login click event here
+            $('#btnLogin').on('click', function(){
+                let strEmail = $('#txtLoginEmail').val();
+                let strPassword = $('#txtLoginPassword').val();
+                
+                //form validation here
+                if(strEmail.length < 1 || strPassword.length < 1){
+                    Swal.fire({
+                        title: "Oops!",
+                        html: '<p>Email and Password cannot be blank</p>',
+                        icon: "error"
+                    })
+                }
+                else
+                {
+                    //api
+                    $('#divLogin').hide();
+                    $('#divDashboard').show();
+                }    
+            })
+            $('.btnToggle').on('click',function(){
+                let strCard = $(this).attr('data-card');
+                if(strCard == 'Login'){
+                    $('#divLogin').slideToggle(function(){
+                        $('#divRegister').slideToggle();
+                    })
+                } else {
+                    $('#divRegister').slideToggle(function(){
+                        $('#divLogin').slideToggle();
+                    })
+                }
+            })
+            //register click event here
+            $('#btnRegister').on('click',function(){
+                //variables here 
+                let blnError = false;
+                let strError = '';
+                
+                let strFirstName = $('#txtFirstName').val();
+                let strLastName = $('#txtLastName').val();
+                let strEmail = $('#txtEmail').val();
+                let strPassword = $('#txtPassword').val(); 
+                let strAddrOne = $('#txtStreetAddrOne').val();
+                let strAddrTwo = $('#txtStreetAddrTwo').val();
+                let strCity = $('#txtCity').val();
+                let strState = $('#txtState').val();
+                let strZIP = $('#txtZip').val();
+                let strPhone = $('#txtPhone').val();
+                let strCoopID = $('#txtCoopID').val();
+                
+                //form validation here, starting with email
+                if(strEmail.length <7){
+                    blnError = true;
+                    strError += '<p>Email must be valid.</p>'
+                } else if (!strEmail.includes('@')){
+                    blnError = true;
+                    strError += '<p>Email must be valid.</p>'
+                } else if(!strEmail.includes('.')){
+                    blnError = true;
+                    strError += '<p>Email must be valid.</p>'
+                }
+                //password validation
+                if(strPassword.length <6){
+                    blnError = true;
+                    strError += '<p>Password must be at least 6 characters long.</p>'
+                }
+                //first name validation
+                if(strFirstName.length <1){
+                    blnError = true;
+                    strError += '<p>First name cannot be blank.</p>'
+                }
+                //last name validation 
+                if(strLastName.length <1){
+                    blnError = true;
+                    strError += '<p>Last name cannot be blank.</p>'
+                }      
+                //street address 1 validation
+                if(strAddrOne.length <1){
+                    blnError = true;
+                    strError += '<p>Street Address 1 cannot be blank.</p>'
+                } 
+                //street address 2 validation
+                if(strAddrTwo.length <1){
+                    blnError = true;
+                    strError += '<p>Street Address 2 cannot be blank.</p>'
+                } 
+                //city validation
+                if(strCity.length < 1){
+                    blnError = true;
+                    strError += '<p>City cannot be blank.</p>'
+                }
+                //Zip code validation
+                if(strZIP.length < 1){
+                    blnError = true;
+                    strError += '<p>ZIP cannot be blank.</p>'  
+                }else if(strZIP.length != 5){
+                    blnError = true;
+                    strError += '<p>Inalid ZIP.</p>'
+                }
+                //Phone number validation
+                if(strPhone.length < 1){
+                    blnError = true;
+                    strError += '<p>Phone number cannot be blank.</p>'
+                }else if(strPhone.length != 10){
+                    blnError = true;
+                    strError += '<p>Invalid phone number.</p>'  
+                } 
+                //Coop ID validation
+                if(strCoopID.length != 4){
+                    blnError = true;
+                    strError += '<p>Invalid CoopID.</p>'
+                }
+                //if there is an error, display it.
+                if(blnError == true){
+                    Swal.fire({
+                        title: "Oops!",
+                        html: strError,
+                        icon: "error"
+                    })
+                }else {
+                    //api
+                    $('#divRegister').hide();
+                    $('#divDashboard').show();
+                }  
+            })  
+
+
+        </script> 
+</body>
+</html>

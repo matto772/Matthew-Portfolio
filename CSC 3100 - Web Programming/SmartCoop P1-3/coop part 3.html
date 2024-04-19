@@ -1,0 +1,554 @@
+<!--Names - Matthew Ogurkis-->
+<!--SmartCoop part 1,2,3-->
+<!--Date Started: 2/28/2024-->
+<!--P1 - Date Completed: 3/1/2024 P2 Completed: 3/21/2024 P3 Completed: 4/9/2024 P3 Improved: 4/15/2024-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SmartCoop</title>
+        <!-- Bootstrap link here -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <!-- Chartjs link here -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!--Adding background image-->
+        <style>
+            body {
+                background-image: url('901252.jpg'); /* Replace with your image path */
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+        </style>
+    </head>
+<body class="bg-dark d-flex flex-column">
+    <div class="d-flex col-12 justify-content-center align-items-center vh-100">    
+        <!--Login part here--> 
+        <div class="card col-12 col-md-5 col-lg-4" id="divLogin">
+            <div class="card-header">
+                <h3>Login</h3>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group mt-4">
+                        <label for="txtLoginEmail" class="form-label">Email</label>
+                        <input id="txtLoginEmail" placeholder="YourEmail@example.com" aria-label="Email" class="form-control" type="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtLoginPassword" class="form-label">Password</label>
+                        <input id="txtLoginPassword" placeholder="Password" aria-label="Password" class="form-control" type="password">
+                    </div>
+                    <button class="col-12 btn btn-success mt-4" id="btnLogin" type="button">Login</button>
+                    <div class="col-12 d-flex justify-content-center">
+                        <a class="col-12 text-center btnToggle" data-card="Login">Need an Account?  Click Here</a>
+                    </div>                
+                </form>
+            </div>
+        </div>
+        <div class="card col-12 col-md-5 col-lg-4" id="divRegister" style="display:none;">
+            <div class="card-header">
+                <h3>Registration</h3>
+            </div>
+            <!--Registration part here-->  
+            <div class="card-body">
+                <form>
+                    <div class="form-group mt-4">
+                        <label for="txtEmail" class="form-label">Email</label>
+                        <input id="txtEmail" placeholder="YourEmail@example.com" aria-label="Email" class="form-control" type="email"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPassword" class="form-label">Password</label>
+                        <input id="txtPassword" placeholder="Password" aria-label="Password" class="form-control" type="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtFirstName" class="form-label">First Name</label>
+                        <input id="txtFirstName" placeholder="First Name" aria-label="First Name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtLastName" class="form-label">Last Name</label>
+                        <input id="txtLastName" placeholder="Last Name" aria-label="Last Name" class="form-control">
+                    </div> 
+                    <div class="form-group">
+                        <label for="txtStreetAddrOne" class="form-label">Street Address 1</label>
+                        <input id="txtStreetAddrOne" placeholder="Street Address 1" aria-label="Street Address 1" class="form-control">
+                    </div> 
+                    <div class="form-group">
+                        <label for="txtStreetAddrTwo" class="form-label">Street Address 2</label>
+                        <input id="txtStreetAddrTwo" placeholder="Street Address 2" aria-label="Street Address 2" class="form-control">
+                    </div> 
+                    <div class="form-group">
+                        <label for="txtCity" class="form-label">City</label>
+                        <input id="txtCity" placeholder="City" aria-label="City" class="form-control">
+                    </div>  
+                    <div class="form-group">
+                        <label for="txtState" class="form-label">State</label>
+                        <input id="txtState" placeholder="State" aria-label="State" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtZip" class="form-label">ZIP</label>
+                        <input id="txtZip" placeholder="Zip" aria-label="Zip" class="form-control">
+                    </div>      
+                    <div class="form-group mt-4">
+                        <label for="txtPhone" class="form-label">Phone</label>
+                        <input id="txtPhone" placeholder="xxx-xxx-xxxx" aria-label="Phone number" class="form-control" type="email"> 
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="txtCoopID" class="form-label">Coop Registration ID</label>
+                        <input id="txtCoopID" placeholder="Coop ID" aria-label="Coop ID" class="form-control">
+                    </div> 
+                    <button class="col-12 btn btn-success mt-4" id="btnRegister" type="button">Register</button>
+                    <div class="col-12 d-flex justify-content-center">
+                        <a class="col-12 text-center btnToggle" data-card="Register">Return To Login</a>
+                    </div> 
+                </form>
+            </div>
+        </div> 
+    <!-- Dashboard part here -->  
+    <div class="card col-12 col-md-8 col-lg-9" id="divDashboard" style="display:none;">
+        <div class="card-header">
+            <h3>SmartCoop Dashboard</h3>
+        </div>
+        <div class="card-body">
+            <div>
+                <label for="txtEggInput" class="form-label">Input how many eggs were harvested today:</label>
+                <input id="txtEggInput" class="form-control" aria-label="Eggs Harvested" type="number">
+            </div>
+            <button class="btn col-12 btn-primary mt-3" type="button" id="btnEggInput">Submit Eggs</button> 
+            <canvas id="eggChart" width="250" height="35"></canvas> 
+            <div id="divTotalEggs" class="mt-4">
+                <label for="txtTotalEggs" class="form-label">Total Eggs Harvested by Smart Coop: </label>
+                <div id="divTotalEggCount"></div>
+            </div>
+            <!-- Humidity and temperature observations--> 
+            <div>
+                <label for="txtTemperature" class="form-label">Input temperature (°) observed today:</label>
+                <input id="txtTemperature" class="form-control" aria-label="temperature °" type="number">
+            </div>   
+            <div>
+                <label for="txtHumidity" class="form-label">Input humidity % observed today:</label>
+                <input id="txtHumidity" class="form-control" aria-label="humidity %" type="number">
+            </div>
+            <button class="btn col-12 btn-primary mt-3" type="button" id="btnObservationInput">Record Observations</button>
+            <!-- Humidity and temperature chart -->
+            <canvas id="environmentChart" width="250" height="35"></canvas>
+            <div id="divLastObservation" class="mt-4">
+                <label for="txtLastTemp" class="form-label">Last temperature (°) observed: </label>
+                <div id="divLastTemp"></div>
+                <label for="txtLastHumidity" class="form-label">Last humidity % observed: </label>
+                <div id="divLastHumidity"></div>
+            </div> 
+            <button class="btn btn-danger col-12 mt-3" type="button" id="btnLogout" data-card="Dashboard">Logout</button>
+            <button class="btn btn-secondary col-12 mt-3" type="button" id="btnSettings">Settings</button> <!-- Button to toggle settings widget -->
+        </div>
+    </div>         
+    <div class="card col-12 col-md-4 col-lg-3" id="divSettings" style="display:none;">
+        <div class="card-header">
+            <h3>SmartCoop Settings</h3>
+        </div>
+        <div class="card-body">
+            <!--settings options here im assuming going off the documentation this will be part of the next iteration as there is a database, so i just set this up in advance -->
+            <!-- Delete Observation Section -->
+            <div class="mt-4">
+                <label for="selDeleteObservation" class="form-label">Select Observation to Delete:</label>
+                <select id="selDeleteObservation" class="form-select">
+        <!-- Populate with observations dynamically -->
+    </select>
+    <button class="btn btn-danger mt-3" id="btnDeleteObservation">Delete Observation</button>
+</div>
+
+    <!-- Delete Egg Count Section -->
+    <div class="mt-4">
+        <label for="selDeleteEggCount" class="form-label">Select Egg Count to Delete:</label>
+        <select id="selDeleteEggCount" class="form-select">
+        <!-- Populate with egg counts dynamically -->
+        </select>
+        <button class="btn btn-danger mt-3" id="btnDeleteEggCount">Delete Egg Count</button>
+    </div>
+    <button class="btn btn-primary col-12 mt-3" type="button" id="btnCloseSettings">Close Settings</button>
+        </div>
+    </div>
+</div>  
+
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+            <!--Script/functions start here--> 
+            <script>
+            //creating the new coopID here
+            //$.post('https://simplecoop.swollenhippo.com/coop.php',function(result){
+                //console.log(result);
+            //})
+   
+            // login click event here
+            $('#btnLogin').on('click', function(){
+                let strEmail = $('#txtLoginEmail').val();
+                let strPassword = $('#txtLoginPassword').val();
+    
+            // form validation here for the email, the password is checked below
+            if(!strEmail.includes('@') || !strEmail.includes('.')) {
+                    Swal.fire({
+                        title: "Oops!",
+                        html: '<p>Email must be valid</p>',
+                        icon: "error"
+                    });
+                } else {
+                // getting the email in question from users.php and checking its validity 
+                    $.ajax({
+                        url: 'https://simplecoop.swollenhippo.com/users.php',
+                        type: 'GET',
+                        data: {Email: strEmail},
+                    success: function(result) {
+                        result = JSON.parse(result);
+                        console.log(result);
+                // checking the email here if it does not exist, throw an error (sweetalert), if it does check the password if that exists, show the dashboard.
+                if(result.Email != strEmail) {
+                    Swal.fire({
+                        title: "Oops!",
+                        html: '<p>Error: Email is not valid.</p>',
+                        icon: "error"
+                    });
+                } else if(result.Password == strPassword) {
+                    // creating a new session here
+                    $.post('https://simplecoop.swollenhippo.com/sessions.php', {Email: strEmail, Password: strPassword}, function(results) {
+                        results = JSON.parse(results);
+                        console.log(results);
+                        sessionStorage.setItem('SimpleSession', results.SessionID);
+                    });
+
+                    // Hide the login div and show the dashboard div
+                    $('#divLogin').slideToggle(function() {     
+                        $('#divDashboard').slideToggle();
+                    })
+                } else {
+                    Swal.fire({
+                        title: "Oops!",
+                        html: '<p>Error: Password is not valid.</p>',
+                        icon: "error"
+                    });
+                }
+            }
+        });
+    }    
+});
+            $('.btnToggle').on('click',function(){
+                let strCard = $(this).attr('data-card');
+                if(strCard == 'Login'){
+                    $('#divLogin').slideToggle(function(){
+                        $('#divRegister').slideToggle();
+                    })
+                } else {
+                    $('#divRegister').slideToggle(function(){
+                        $('#divLogin').slideToggle();
+                    })
+                }
+            })
+            
+
+            //register click event here
+            $('#btnRegister').on('click',function(){
+                //variables here 
+                let blnError = false;
+                let strError = '';
+                
+                let strFirstName = $('#txtFirstName').val();
+                let strLastName = $('#txtLastName').val();
+                let strEmail = $('#txtEmail').val();
+                let strPassword = $('#txtPassword').val(); 
+                let strAddrOne = $('#txtStreetAddrOne').val();
+                let strAddrTwo = $('#txtStreetAddrTwo').val();
+                let strCity = $('#txtCity').val();
+                let strState = $('#txtState').val();
+                let strZIP = $('#txtZip').val();
+                let strPhone = $('#txtPhone').val();
+                let strCoopID = $('#txtCoopID').val();
+                
+                //form validation here, starting with email
+                if(strEmail.length <7){
+                    blnError = true;
+                    strError += '<p>Email must be valid.</p>'
+                } else if (!strEmail.includes('@')){
+                    blnError = true;
+                    strError += '<p>Email must be valid.</p>'
+                } else if(!strEmail.includes('.')){
+                    blnError = true;
+                    strError += '<p>Email must be valid.</p>'
+                }
+                //password validation
+                if(strPassword.length <6){
+                    blnError = true;
+                    strError += '<p>Password must be at least 6 characters long.</p>'
+                }
+                //first name validation
+                if(strFirstName.length <1){
+                    blnError = true;
+                    strError += '<p>First name cannot be blank.</p>'
+                }
+                //last name validation 
+                if(strLastName.length <1){
+                    blnError = true;
+                    strError += '<p>Last name cannot be blank.</p>'
+                }      
+                //street address 1 validation
+                if(strAddrOne.length <1){
+                    blnError = true;
+                    strError += '<p>Street Address 1 cannot be blank.</p>'
+                } 
+                //street address 2 validation
+                if(strAddrTwo.length <1){
+                    blnError = true;
+                    strError += '<p>Street Address 2 cannot be blank.</p>'
+                } 
+                //city validation
+                if(strCity.length < 1){
+                    blnError = true;
+                    strError += '<p>City cannot be blank.</p>'
+                }
+                //Zip code validation
+                if(strZIP.length < 1){
+                    blnError = true;
+                    strError += '<p>ZIP cannot be blank.</p>'  
+                }else if(strZIP.length != 5){
+                    blnError = true;
+                    strError += '<p>Inalid ZIP.</p>'
+                }
+                //Phone number validation
+                if(strPhone.length < 1){
+                    blnError = true;
+                    strError += '<p>Phone number cannot be blank.</p>'
+                }else if(strPhone.length != 10){
+                    blnError = true;
+                    strError += '<p>Invalid phone number.</p>'  
+                } 
+                //Coop ID validation
+                if(strCoopID.length != 8){
+                    blnError = true;
+                    strError += '<p>Invalid CoopID.</p>'
+                }
+                //if there is an error, display it.
+                if(blnError == true){
+                    Swal.fire({
+                        title: "Oops!",
+                        html: strError,
+                        icon: "error"
+                    })
+                }else {
+                    //api call to create a new user
+                    $.post('https://simplecoop.swollenhippo.com/users.php',{Email:strEmail,Password:strPassword,FirstName:strFirstName,LastName:strLastName,CoopID:'N23TISAD'},function(result){
+                        result = JSON.parse(result);
+                        console.log(result);
+                        //error handling here  
+                        if(result.Error){
+                            Swal.fire({
+                                title: "Oops!",
+                                html: '<p>' + result.Error + '</p>',
+                                icon: "error"
+                            });
+                        }
+                        else{
+                            swal.fire({
+                                title: 'Success!',
+                                icon: 'success',
+                                comfirmButtonText: 'OK'
+                            })
+                        }
+                    })
+                    $('#divRegister').hide();
+                    $('#divLogin').show();
+                }  
+            })  
+
+        // Open settings widget
+        $('#btnSettings').on('click', function() {
+            $('#divSettings').slideToggle();
+        });
+
+        // Close settings widget
+        $('#btnCloseSettings').on('click', function() {
+            $('#divSettings').slideToggle();
+        });
+
+            
+        //logout button here
+        $('#btnLogout').on('click', function(){
+            let strCard = $(this).attr('data-card');
+            if(strCard == 'Dashboard'){
+                $('#divDashboard').slideToggle(function(){
+                    $('#divLogin').slideToggle() 
+                });
+            }
+        });
+        
+    
+
+// Retrieve eggData and eggLabels from sessionStorage if they exist
+let eggData = JSON.parse(sessionStorage.getItem('eggData')) || [];
+let eggLabels = JSON.parse(sessionStorage.getItem('eggLabels')) || [];
+
+// Egg stuff
+let eggTotal = 0; //egg grand total here
+
+$('#btnEggInput').on('click', function() {
+    let intEgg = parseInt($('#txtEggInput').val(), 10); //parsing the input value to an int
+    if (intEgg > 0) { //checking if input is a valid number here
+        let currentDate = new Date().toISOString(); //Getting current date and time
+        let sessionID = sessionStorage.getItem('SimpleSession'); //Grabbing the sessionID from sessionStorage above
+        //api call to post the eggs input
+        $.post('https://simplecoop.swollenhippo.com/eggs.php', {SessionID: sessionID, observationDateTime: currentDate, eggs: intEgg}, function(result) {
+            result = JSON.parse(result);
+            console.log(result);
+            if (result.Error) {
+                Swal.fire({
+                    title: "Oops!",
+                    html: '<p>' + result.Error + '</p>',
+                    icon: "error"
+                });
+            } else {
+                eggTotal += intEgg; //updating the egg total if request is successful and all is well
+                $('#divTotalEggCount').text(eggTotal); //showing the user the grand total amount of eggs they have collected
+                eggData.push(intEgg); 
+                eggLabels.push(new Date().toLocaleDateString());  
+                
+                // Store eggData and eggLabels in sessionStorage
+                sessionStorage.setItem('eggData', JSON.stringify(eggData));
+                sessionStorage.setItem('eggLabels', JSON.stringify(eggLabels));
+                
+                // Update the chart data
+                eggChart.data.labels = eggLabels;
+                eggChart.data.datasets[0].data = eggData;
+                eggChart.update();
+            }
+        });
+    } else {
+        Swal.fire({
+            title: "Invalid Input",
+            html: '<p>Please enter a valid number of eggs.</p>',
+            icon: "error"
+        });
+    }
+});
+
+//Chart.js setup for the eggs
+let eggChartCtx = document.getElementById('eggChart').getContext('2d');
+
+let eggChart = new Chart(eggChartCtx, {
+    type: 'line',
+    data: {
+        labels: eggLabels,
+        datasets: [{
+            label: 'Eggs Harvested',
+            data: eggData,
+            backgroundColor: 'rgba(255,99,132,0.4)', //Light red background color
+            borderColor: 'rgba(255,99,132,1)', //Red border color
+            borderWidth: 3 //Thicker line
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+//Retrieve temperatureData, humidityData, and environmentLabels from sessionStorage if they exist in the sessionStorage
+let temperatureData = JSON.parse(sessionStorage.getItem('temperatureData')) || [];
+let humidityData = JSON.parse(sessionStorage.getItem('humidityData')) || [];
+let environmentLabels = JSON.parse(sessionStorage.getItem('environmentLabels')) || [];
+
+//Chart.js setup for humidity and temperature
+let environmentChartCtx = document.getElementById('environmentChart').getContext('2d');
+
+let environmentChart = new Chart(environmentChartCtx, {
+    type: 'line',
+    data: {
+        labels: environmentLabels,
+        datasets: [{
+            label: 'Temperature (°C)',
+            data: temperatureData,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)', //Red background color
+            borderColor: 'rgba(255, 99, 132, 1)', //Red border color
+            borderWidth: 3
+        },
+        {
+            label: 'Humidity (%)',
+            data: humidityData,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', //Blue background color
+            borderColor: 'rgba(54, 162, 235, 1)', //Blue border color
+            borderWidth: 3
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+//Function to update the combined chart data
+function updateEnvironmentChart() {
+    environmentChart.data.labels = environmentLabels;
+    environmentChart.data.datasets[0].data = temperatureData;
+    environmentChart.data.datasets[1].data = humidityData;
+    environmentChart.update();
+}
+
+//Observation input 
+$('#btnObservationInput').on('click', function() {
+    //getting the data input by the user and parsing it into an Int
+    let strTemperatureInput = $('#txtTemperature').val();
+    let strHumidityInput = $('#txtHumidity').val();
+
+    let intTemp = parseInt(strTemperatureInput, 10);
+    let intHumid = parseInt(strHumidityInput, 10);
+    
+    //getting the current date and session id here
+    let currentDate = new Date().toISOString();
+    let sessionID = sessionStorage.getItem('SimpleSession');
+
+    //validating user input to make sure the temperature and humidity are more realistic 
+    if(intTemp >= 0 && intTemp <= 125 && intHumid >= 0 && intHumid <= 100) {
+        $.post('https://simplecoop.swollenhippo.com/environment.php', {SessionID: sessionID,observationDateTime: currentDate,temperature: intTemp,humidity: intHumid}, function(result) {
+            result = JSON.parse(result);
+            console.log(result);
+            if (result.Error) {
+                Swal.fire({
+                    title: "Oops!",
+                    html: '<p>' + result.Error + '</p>',
+                    icon: "error"
+                });
+            } else {
+                //Adding new data to arrays
+                temperatureData.push(intTemp);
+                humidityData.push(intHumid);
+                environmentLabels.push(new Date().toLocaleDateString());
+
+                //Storing the updated data in sessionStorage
+                sessionStorage.setItem('temperatureData', JSON.stringify(temperatureData));
+                sessionStorage.setItem('humidityData', JSON.stringify(humidityData));
+                sessionStorage.setItem('environmentLabels', JSON.stringify(environmentLabels));
+
+                //Update chart (function above)
+                updateEnvironmentChart();
+
+                //display the last input here 
+                $('#divLastTemp').text(intTemp);
+                $('#divLastHumidity').text(intHumid); 
+            }
+        });
+    } else {
+        Swal.fire({
+            title: "Invalid Input",
+            html: '<p>Please enter a valid temperature and humidity to record.</p>',
+            icon: "error"
+        });
+    }
+});
+
+        </script> 
+</body>
+</html>
